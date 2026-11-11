@@ -1,0 +1,44 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-016
+======================================================================
+Origin     : Belagavi
+Destination: Vijayawada
+Departure  : 2026-10-20 23:00:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-016-C1  |  Chilled Food 0 4  |  Lot: LOT17776  |  Profile: PRF-04  |  Rs 150,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-03  |  PASSIVE_BOX  |  2026-10-20 23:00:00 → 2026-10-21 06:00:00  |  Rs 24,000.00
+  Leg 2  |  CAR-04  |  REEFER  |  2026-10-21 06:00:00 → 2026-10-21 12:00:00  |  Rs 24,000.00
+  Leg 3  |  CAR-01  |  REEFER  |  2026-10-21 12:00:00 → 2026-10-21 17:00:00  |  Rs 36,000.00
+  Leg 4  |  CAR-02  |  PASSIVE_BOX  |  2026-10-21 17:00:00 → 2026-10-21 23:00:00  |  Rs 45,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-016-C1  |  Profile: PRF-04  |  Eval #1  |  Decision: REJECT  |  MKT: 2.04 °C  |  Exc Min: 2.00  |  Reason: HARD_LIMIT_BREACH
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-21 02:00:00 → 2026-10-21 02:02:00  |  2.00 min  |  Peak: 10.5 °C  |  Leg 1 / CAR-03  |  Counts: false
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-03  |  2.00 min  |  Minute Penalty: Rs 40.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 40.00
+  Leg 2  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-01  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 4  |  CAR-02  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  Consignment: SHP-016-C1  |  Claim: Rs 150000.00  |  Party: CAR-03  |  2.00 min  |  Share Before Cap: Rs 150000.00  |  Share After Cap: Rs 150000.00
+
+RELEASE CERTIFICATES
+----------------------------------------
+  No release certificates (consignment not released).
+
+======================================================================

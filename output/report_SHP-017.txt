@@ -1,0 +1,43 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-017
+======================================================================
+Origin     : Mysuru
+Destination: Kochi
+Departure  : 2026-10-22 04:12:00
+Logger Owner: CARRIER
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-017-C1  |  Vaccine 2 8  |  Lot: LOT16918  |  Profile: PRF-01  |  Rs 400,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-05  |  REEFER  |  2026-10-22 04:12:00 → 2026-10-22 12:12:00  |  Rs 18,000.00
+  Leg 2  |  CAR-05  |  REEFER  |  2026-10-22 12:12:00 → 2026-10-22 22:12:00  |  Rs 24,000.00
+  Leg 3  |  CAR-04  |  REEFER  |  2026-10-22 22:12:00 → 2026-10-23 02:12:00  |  Rs 45,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-017-C1  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 4.96 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  No temperature excursions detected.
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-017-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 4.96 °C  |  Exc Min: 0.00
+  Consignment SHP-017-C1 released compliant with profile PRF-01.
+
+======================================================================

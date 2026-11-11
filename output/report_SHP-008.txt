@@ -1,0 +1,49 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-008
+======================================================================
+Origin     : Mangaluru
+Destination: Pune
+Departure  : 2026-10-10 11:24:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-008-C1  |  Vaccine 2 8  |  Lot: LOT39352  |  Profile: PRF-01  |  Rs 900,000.00
+  SHP-008-C2  |  Vaccine 2 8  |  Lot: LOT29795  |  Profile: PRF-01  |  Rs 250,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-04  |  REEFER  |  2026-10-10 11:24:00 → 2026-10-10 17:24:00  |  Rs 45,000.00
+  Leg 2  |  CAR-03  |  PASSIVE_BOX  |  2026-10-10 17:24:00 → 2026-10-11 01:24:00  |  Rs 18,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-008-C1  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.29 °C  |  Exc Min: 54.00  |  Reason: COMPLIANT
+  Consignment: SHP-008-C2  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.29 °C  |  Exc Min: 54.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-10 12:24:00 → 2026-10-10 12:34:00  |  10.00 min  |  Peak: 8.8 °C  |  Leg 1 / CAR-04  |  Counts: true
+  #2  HIGH  |  2026-10-10 13:54:00 → 2026-10-10 14:04:00  |  10.00 min  |  Peak: 8.8 °C  |  Leg 1 / CAR-04  |  Counts: true
+  #3  HIGH  |  2026-10-10 15:24:00 → 2026-10-10 15:34:00  |  10.00 min  |  Peak: 8.8 °C  |  Leg 1 / CAR-04  |  Counts: true
+  #4  HIGH  |  2026-10-10 18:24:00 → 2026-10-10 18:36:00  |  12.00 min  |  Peak: 8.9 °C  |  Leg 2 / CAR-03  |  Counts: true
+  #5  HIGH  |  2026-10-10 20:44:00 → 2026-10-10 20:56:00  |  12.00 min  |  Peak: 8.9 °C  |  Leg 2 / CAR-03  |  Counts: true
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-04  |  30.00 min  |  Minute Penalty: Rs 1500.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 1500.00
+  Leg 2  |  CAR-03  |  24.00 min  |  Minute Penalty: Rs 480.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 480.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-008-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 5.29 °C  |  Exc Min: 54.00
+  Consignment SHP-008-C1 released compliant with profile PRF-01.
+  SHP-008-C2  |  Released: 2026-11-11 21:34:17  |  MKT: 5.29 °C  |  Exc Min: 54.00
+  Consignment SHP-008-C2 released compliant with profile PRF-01.
+
+======================================================================

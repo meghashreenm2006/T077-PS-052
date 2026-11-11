@@ -1,0 +1,45 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-015
+======================================================================
+Origin     : Mangaluru
+Destination: Pune
+Departure  : 2026-10-19 10:48:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-015-C1  |  Vaccine 2 8  |  Lot: LOT54417  |  Profile: PRF-01  |  Rs 600,000.00
+  SHP-015-C2  |  Insulin 2 8 Strict  |  Lot: LOT30063  |  Profile: PRF-03  |  Rs 900,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-03  |  PASSIVE_BOX  |  2026-10-19 10:48:00 → 2026-10-19 14:48:00  |  Rs 45,000.00
+  Leg 2  |  CAR-02  |  PASSIVE_BOX  |  2026-10-19 14:48:00 → 2026-10-19 19:48:00  |  Rs 18,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-015-C1  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.89 °C  |  Exc Min: 100.00  |  Reason: COMPLIANT
+  Consignment: SHP-015-C2  |  Profile: PRF-03  |  Eval #1  |  Decision: QUARANTINE  |  MKT: 5.89 °C  |  Exc Min: 100.00  |  Reason: EXCEEDED_ALLOWED_MINUTES
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-19 14:08:00 → 2026-10-19 14:48:00  |  40.00 min  |  Peak: 9.0 °C  |  Leg 1 / CAR-03  |  Counts: true
+  #2  HIGH  |  2026-10-19 14:48:00 → 2026-10-19 14:58:00  |  10.00 min  |  Peak: 9.0 °C  |  Leg 1 / 3PL  |  Counts: true
+  #3  HIGH  |  2026-10-19 14:58:00 → 2026-10-19 15:48:00  |  50.00 min  |  Peak: 9.0 °C  |  Leg 2 / CAR-02  |  Counts: true
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-03  |  40.00 min  |  Minute Penalty: Rs 800.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 800.00
+  Leg 2  |  CAR-02  |  50.00 min  |  Minute Penalty: Rs 1000.00  |  Precool: Rs 2000.00  |  Cap: false  |  TOTAL: Rs 3000.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-015-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 5.89 °C  |  Exc Min: 100.00
+  Consignment SHP-015-C1 released compliant with profile PRF-01.
+
+======================================================================

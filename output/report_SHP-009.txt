@@ -1,0 +1,57 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-009
+======================================================================
+Origin     : Vijayawada
+Destination: Bengaluru
+Departure  : 2026-10-11 15:36:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-009-C1  |  Crt 15 25  |  Lot: LOT25200  |  Profile: PRF-05  |  Rs 900,000.00
+  SHP-009-C2  |  Crt 15 25  |  Lot: LOT53277  |  Profile: PRF-05  |  Rs 150,000.00
+  SHP-009-C3  |  Crt 15 25  |  Lot: LOT57810  |  Profile: PRF-05  |  Rs 900,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-04  |  PASSIVE_BOX  |  2026-10-11 15:36:00 → 2026-10-11 19:36:00  |  Rs 18,000.00
+  Leg 2  |  CAR-03  |  REEFER  |  2026-10-11 19:36:00 → 2026-10-12 02:36:00  |  Rs 24,000.00
+  Leg 3  |  CAR-02  |  REEFER  |  2026-10-12 02:36:00 → 2026-10-12 10:36:00  |  Rs 30,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-009-C1  |  Profile: PRF-05  |  Eval #1  |  Decision: QUARANTINE  |  MKT: 20.00 °C  |  Exc Min: 0.00  |  Reason: HANDOFF_BEFORE_LEG_END
+  Consignment: SHP-009-C2  |  Profile: PRF-05  |  Eval #1  |  Decision: QUARANTINE  |  MKT: 20.00 °C  |  Exc Min: 0.00  |  Reason: HANDOFF_BEFORE_LEG_END
+  Consignment: SHP-009-C3  |  Profile: PRF-05  |  Eval #1  |  Decision: QUARANTINE  |  MKT: 20.00 °C  |  Exc Min: 0.00  |  Reason: HANDOFF_BEFORE_LEG_END
+  Consignment: SHP-009-C1  |  Profile: PRF-05  |  Eval #2  |  Decision: RELEASE  |  MKT: 20.00 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+  Consignment: SHP-009-C2  |  Profile: PRF-05  |  Eval #2  |  Decision: RELEASE  |  MKT: 20.00 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+  Consignment: SHP-009-C3  |  Profile: PRF-05  |  Eval #2  |  Decision: RELEASE  |  MKT: 20.00 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  No temperature excursions detected.
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-02  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 1  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-02  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-009-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 20.00 °C  |  Exc Min: 0.00
+  Consignment SHP-009-C1 released compliant with profile PRF-05.
+  SHP-009-C2  |  Released: 2026-11-11 21:34:17  |  MKT: 20.00 °C  |  Exc Min: 0.00
+  Consignment SHP-009-C2 released compliant with profile PRF-05.
+  SHP-009-C3  |  Released: 2026-11-11 21:34:17  |  MKT: 20.00 °C  |  Exc Min: 0.00
+  Consignment SHP-009-C3 released compliant with profile PRF-05.
+
+======================================================================

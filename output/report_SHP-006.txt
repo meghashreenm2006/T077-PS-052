@@ -1,0 +1,57 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-006
+======================================================================
+Origin     : Mumbai
+Destination: Mysuru
+Departure  : 2026-10-07 23:00:00
+Logger Owner: CARRIER
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-006-C1  |  Vaccine 2 8  |  Lot: LOT66126  |  Profile: PRF-01  |  Rs 150,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-03  |  PASSIVE_BOX  |  2026-10-07 23:00:00 → 2026-10-08 03:00:00  |  Rs 18,000.00
+  Leg 2  |  CAR-05  |  PASSIVE_BOX  |  2026-10-08 03:00:00 → 2026-10-08 07:00:00  |  Rs 36,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-006-C1  |  Profile: PRF-01  |  Eval #1  |  Decision: QUARANTINE  |  MKT: 9.94 °C  |  Exc Min: 158.00  |  Reason: EXCEEDED_ALLOWED_MINUTES
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-07 23:02:00 → 2026-10-07 23:04:00  |  2.00 min  |  Peak: 8.2 °C  |  Leg 1 / CAR-03  |  Counts: false
+  #2  HIGH  |  2026-10-07 23:50:00 → 2026-10-07 23:52:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 1 / CAR-03  |  Counts: false
+  #3  HIGH  |  2026-10-08 00:00:00 → 2026-10-08 01:10:00  |  70.00 min  |  Peak: 14.5 °C  |  Leg 1 / CAR-03  |  Counts: true
+  #4  HIGH  |  2026-10-08 01:30:00 → 2026-10-08 01:34:00  |  4.00 min  |  Peak: 8.2 °C  |  Leg 1 / CAR-03  |  Counts: false
+  #5  HIGH  |  2026-10-08 01:52:00 → 2026-10-08 01:54:00  |  2.00 min  |  Peak: 8.2 °C  |  Leg 1 / CAR-03  |  Counts: false
+  #6  HIGH  |  2026-10-08 02:12:00 → 2026-10-08 02:14:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 1 / CAR-03  |  Counts: false
+  #7  HIGH  |  2026-10-08 02:16:00 → 2026-10-08 02:20:00  |  4.00 min  |  Peak: 8.2 °C  |  Leg 1 / CAR-03  |  Counts: false
+  #8  HIGH  |  2026-10-08 02:38:00 → 2026-10-08 02:40:00  |  2.00 min  |  Peak: 8.2 °C  |  Leg 1 / CAR-03  |  Counts: false
+  #9  HIGH  |  2026-10-08 03:08:00 → 2026-10-08 03:10:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 1 / 3PL  |  Counts: false
+  #10  HIGH  |  2026-10-08 03:10:00 → 2026-10-08 03:12:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 2 / CAR-05  |  Counts: false
+  #11  HIGH  |  2026-10-08 03:32:00 → 2026-10-08 03:34:00  |  2.00 min  |  Peak: 8.2 °C  |  Leg 2 / CAR-05  |  Counts: false
+  #12  HIGH  |  2026-10-08 03:40:00 → 2026-10-08 03:42:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 2 / CAR-05  |  Counts: false
+  #13  HIGH  |  2026-10-08 03:54:00 → 2026-10-08 03:56:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 2 / CAR-05  |  Counts: false
+  #14  HIGH  |  2026-10-08 03:58:00 → 2026-10-08 04:50:00  |  52.00 min  |  Peak: 14.5 °C  |  Leg 2 / CAR-05  |  Counts: true
+  #15  HIGH  |  2026-10-08 05:02:00 → 2026-10-08 05:04:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 2 / CAR-05  |  Counts: false
+  #16  HIGH  |  2026-10-08 05:28:00 → 2026-10-08 05:30:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 2 / CAR-05  |  Counts: false
+  #17  HIGH  |  2026-10-08 05:56:00 → 2026-10-08 05:58:00  |  2.00 min  |  Peak: 8.1 °C  |  Leg 2 / CAR-05  |  Counts: false
+  #18  HIGH  |  2026-10-08 06:36:00 → 2026-10-08 06:38:00  |  2.00 min  |  Peak: 8.2 °C  |  Leg 2 / CAR-05  |  Counts: false
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-03  |  88.00 min  |  Minute Penalty: Rs 1760.00  |  Precool: Rs 2000.00  |  Cap: true  |  TOTAL: Rs 3600.00
+  Leg 2  |  CAR-05  |  68.00 min  |  Minute Penalty: Rs 1360.00  |  Precool: Rs 2000.00  |  Cap: false  |  TOTAL: Rs 3360.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  No release certificates (consignment not released).
+
+======================================================================

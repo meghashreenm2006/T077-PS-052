@@ -1,0 +1,43 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-004
+======================================================================
+Origin     : Hubballi
+Destination: Mysuru
+Departure  : 2026-10-05 05:36:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-004-C1  |  Vaccine 2 8  |  Lot: LOT49855  |  Profile: PRF-01  |  Rs 400,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-05  |  PASSIVE_BOX  |  2026-10-05 05:36:00 → 2026-10-05 09:36:00  |  Rs 36,000.00
+  Leg 2  |  CAR-01  |  REEFER  |  2026-10-05 09:36:00 → 2026-10-05 16:36:00  |  Rs 36,000.00
+  Leg 3  |  CAR-04  |  PASSIVE_BOX  |  2026-10-05 16:36:00 → 2026-10-05 20:36:00  |  Rs 30,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-004-C1  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.06 °C  |  Exc Min: 4.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-05 09:36:00 → 2026-10-05 09:40:00  |  4.00 min  |  Peak: 15.0 °C  |  Leg 1 / 3PL  |  Counts: false
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-01  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 2000.00  |  Cap: false  |  TOTAL: Rs 2000.00
+  Leg 3  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-004-C1  |  Released: 2026-11-11 21:34:16  |  MKT: 5.06 °C  |  Exc Min: 4.00
+  Consignment SHP-004-C1 released compliant with profile PRF-01.
+
+======================================================================

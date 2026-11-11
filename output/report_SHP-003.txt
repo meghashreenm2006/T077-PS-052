@@ -1,0 +1,46 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-003
+======================================================================
+Origin     : Belagavi
+Destination: Hyderabad
+Departure  : 2026-10-03 23:24:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-003-C1  |  Vaccine 2 8  |  Lot: LOT67903  |  Profile: PRF-01  |  Rs 900,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-02  |  REEFER  |  2026-10-03 23:24:00 → 2026-10-04 09:24:00  |  Rs 30,000.00
+  Leg 2  |  CAR-05  |  REEFER  |  2026-10-04 09:24:00 → 2026-10-04 16:24:00  |  Rs 30,000.00
+  Leg 3  |  CAR-03  |  PASSIVE_BOX  |  2026-10-04 16:24:00 → 2026-10-05 00:24:00  |  Rs 30,000.00
+  Leg 4  |  CAR-01  |  REEFER  |  2026-10-05 00:24:00 → 2026-10-05 07:24:00  |  Rs 45,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-003-C1  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.03 °C  |  Exc Min: 11.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-04 04:24:00 → 2026-10-04 04:29:00  |  5.00 min  |  Peak: 9.2 °C  |  Leg 1 / CAR-02  |  Counts: true
+  #2  HIGH  |  2026-10-04 07:44:00 → 2026-10-04 07:50:00  |  6.00 min  |  Peak: 9.2 °C  |  Leg 1 / CAR-02  |  Counts: true
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-02  |  11.00 min  |  Minute Penalty: Rs 550.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 550.00
+  Leg 2  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 4  |  CAR-01  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-003-C1  |  Released: 2026-11-11 21:34:16  |  MKT: 5.03 °C  |  Exc Min: 11.00
+  Consignment SHP-003-C1 released compliant with profile PRF-01.
+
+======================================================================

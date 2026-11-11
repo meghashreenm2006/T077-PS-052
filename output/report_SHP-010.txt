@@ -1,0 +1,44 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-010
+======================================================================
+Origin     : Mysuru
+Destination: Hubballi
+Departure  : 2026-10-12 22:48:00
+Logger Owner: CARRIER
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-010-C1  |  Crt 15 25  |  Lot: LOT96461  |  Profile: PRF-05  |  Rs 250,000.00
+  SHP-010-C2  |  Crt 15 25  |  Lot: LOT58589  |  Profile: PRF-05  |  Rs 900,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-05  |  PASSIVE_BOX  |  2026-10-12 22:48:00 → 2026-10-13 05:48:00  |  Rs 36,000.00
+  Leg 2  |  CAR-04  |  PASSIVE_BOX  |  2026-10-13 05:48:00 → 2026-10-13 13:48:00  |  Rs 24,000.00
+  Leg 3  |  CAR-02  |  REEFER  |  2026-10-13 13:48:00 → 2026-10-13 20:48:00  |  Rs 45,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-010-C1  |  Profile: PRF-05  |  Eval #1  |  Decision: QUARANTINE  |  MKT: 20.01 °C  |  Exc Min: 0.00  |  Reason: MISSING_RECEIVING_SIGNATURE
+  Consignment: SHP-010-C2  |  Profile: PRF-05  |  Eval #1  |  Decision: QUARANTINE  |  MKT: 20.01 °C  |  Exc Min: 0.00  |  Reason: MISSING_RECEIVING_SIGNATURE
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  No temperature excursions detected.
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-02  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  No release certificates (consignment not released).
+
+======================================================================

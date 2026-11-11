@@ -1,0 +1,47 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-013
+======================================================================
+Origin     : Mysuru
+Destination: Kochi
+Departure  : 2026-10-16 22:24:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-013-C1  |  Insulin 2 8 Strict  |  Lot: LOT53641  |  Profile: PRF-03  |  Rs 150,000.00
+  SHP-013-C2  |  Insulin 2 8 Strict  |  Lot: LOT79533  |  Profile: PRF-03  |  Rs 900,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-05  |  PASSIVE_BOX  |  2026-10-16 22:24:00 → 2026-10-17 08:24:00  |  Rs 45,000.00
+  Leg 2  |  CAR-02  |  REEFER  |  2026-10-17 08:24:00 → 2026-10-17 16:24:00  |  Rs 36,000.00
+  Leg 3  |  CAR-04  |  PASSIVE_BOX  |  2026-10-17 16:24:00 → 2026-10-17 22:24:00  |  Rs 36,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-013-C1  |  Profile: PRF-03  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.00 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+  Consignment: SHP-013-C2  |  Profile: PRF-03  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.00 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  No temperature excursions detected.
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-02  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-013-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 5.00 °C  |  Exc Min: 0.00
+  Consignment SHP-013-C1 released compliant with profile PRF-03.
+  SHP-013-C2  |  Released: 2026-11-11 21:34:17  |  MKT: 5.00 °C  |  Exc Min: 0.00
+  Consignment SHP-013-C2 released compliant with profile PRF-03.
+
+======================================================================

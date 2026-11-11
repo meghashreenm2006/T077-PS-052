@@ -1,0 +1,45 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-012
+======================================================================
+Origin     : Mangaluru
+Destination: Mumbai
+Departure  : 2026-10-15 13:12:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-012-C1  |  Chilled Food 0 4  |  Lot: LOT77628  |  Profile: PRF-04  |  Rs 250,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-03  |  REEFER  |  2026-10-15 13:12:00 → 2026-10-15 20:12:00  |  Rs 24,000.00
+  Leg 2  |  CAR-02  |  REEFER  |  2026-10-15 20:12:00 → 2026-10-16 03:12:00  |  Rs 30,000.00
+  Leg 3  |  CAR-05  |  PASSIVE_BOX  |  2026-10-16 03:12:00 → 2026-10-16 08:12:00  |  Rs 30,000.00
+  Leg 4  |  CAR-02  |  PASSIVE_BOX  |  2026-10-16 08:12:00 → 2026-10-16 15:12:00  |  Rs 18,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-012-C1  |  Profile: PRF-04  |  Eval #1  |  Decision: RELEASE  |  MKT: 2.04 °C  |  Exc Min: 20.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-16 00:28:00 → 2026-10-16 00:48:00  |  20.00 min  |  Peak: 5.5 °C  |  Leg 2 / CAR-02  |  Counts: true
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-02  |  20.00 min  |  Minute Penalty: Rs 1000.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 1000.00
+  Leg 3  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 4  |  CAR-02  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-012-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 2.04 °C  |  Exc Min: 20.00
+  Consignment SHP-012-C1 released compliant with profile PRF-04.
+
+======================================================================

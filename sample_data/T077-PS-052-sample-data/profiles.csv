@@ -1,0 +1,6 @@
+profile_id,name,range_min_c,range_max_c,hard_min_c,hard_max_c,allowed_excursion_minutes,allowed_excursion_count,mkt_limit_c
+PRF-01,VACCINE_2_8,2.0,8.0,0.0,15.0,120,3,8.0
+PRF-02,FROZEN_MINUS18,-25.0,-18.0,-30.0,-15.0,60,3,-18.0
+PRF-03,INSULIN_2_8_STRICT,2.0,8.0,0.0,12.0,90,2,8.0
+PRF-04,CHILLED_FOOD_0_4,0.0,4.0,-2.0,10.0,180,3,5.0
+PRF-05,CRT_15_25,15.0,25.0,8.0,30.0,240,4,25.0

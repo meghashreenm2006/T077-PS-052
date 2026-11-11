@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cold-Chain Compliance Dashboard — T077 / PS-052</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <!-- Chart.js for temperature graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TOP NAV
+═══════════════════════════════════════════════════════════════ -->
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="nav-icon">❄️</span>
+    <div>
+      <div class="nav-title">Cold-Chain Compliance Engine</div>
+      <div class="nav-sub">Team T077 · Problem Statement PS-052</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="showPage('overview')">Overview</button>
+    <button class="nav-btn" onclick="showPage('shipments')">Shipments</button>
+    <button class="nav-btn" onclick="showPage('excursions')">Excursions</button>
+    <button class="nav-btn" onclick="showPage('claims')">Claims &amp; Penalties</button>
+    <button class="nav-btn" onclick="showPage('certificates')">Certificates</button>
+    <button class="nav-btn" onclick="showPage('quarantine')">Quarantine Report</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE: OVERVIEW
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-overview" class="page active">
+  <div class="page-header">
+    <h1>Dashboard Overview</h1>
+    <p class="page-sub">Live analysis of 20 cold-chain shipments from sample dataset</p>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="kpi-grid" id="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-icon">🚚</div>
+      <div class="kpi-value" id="kpi-shipments">—</div>
+      <div class="kpi-label">Total Shipments</div>
+    </div>
+    <div class="kpi-card kpi-green">
+      <div class="kpi-icon">✅</div>
+      <div class="kpi-value" id="kpi-released">—</div>
+      <div class="kpi-label">Released</div>
+    </div>
+    <div class="kpi-card kpi-amber">
+      <div class="kpi-icon">⚠️</div>
+      <div class="kpi-value" id="kpi-quarantine">—</div>
+      <div class="kpi-label">Quarantined</div>
+    </div>
+    <div class="kpi-card kpi-red">
+      <div class="kpi-icon">❌</div>
+      <div class="kpi-value" id="kpi-rejected">—</div>
+      <div class="kpi-label">Rejected</div>
+    </div>
+    <div class="kpi-card kpi-blue">
+      <div class="kpi-icon">🌡️</div>
+      <div class="kpi-value" id="kpi-excursion-min">—</div>
+      <div class="kpi-label">Total Excursion Min</div>
+    </div>
+    <div class="kpi-card kpi-orange">
+      <div class="kpi-icon">💰</div>
+      <div class="kpi-value" id="kpi-penalty">—</div>
+      <div class="kpi-label">Total Penalties (₹)</div>
+    </div>
+    <div class="kpi-card kpi-purple">
+      <div class="kpi-icon">📋</div>
+      <div class="kpi-value" id="kpi-claims">—</div>
+      <div class="kpi-label">Total Claims (₹)</div>
+    </div>
+    <div class="kpi-card kpi-teal">
+      <div class="kpi-icon">📜</div>
+      <div class="kpi-value" id="kpi-certs">—</div>
+      <div class="kpi-label">Certificates Issued</div>
+    </div>
+  </div>
+
+  <!-- Charts row -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>Decision Breakdown</h3>
+      <canvas id="decisionChart" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Shipment Status Overview</h3>
+      <canvas id="statusBarChart" height="220"></canvas>
+    </div>
+  </div>
+
+  <!-- Shipment Status Cards -->
+  <div class="section-title">Shipment Status Cards</div>
+  <div class="card-grid" id="card-grid">
+    <div class="loading">Loading shipment cards…</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE: SHIPMENTS
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-shipments" class="page">
+  <div class="page-header">
+    <h1>Shipment Details</h1>
+    <p class="page-sub">Click a shipment to view temperature graph and full audit trail</p>
+  </div>
+
+  <div class="shipment-layout">
+    <div class="shipment-list" id="shipment-list">
+      <div class="loading">Loading…</div>
+    </div>
+    <div class="shipment-detail" id="shipment-detail">
+      <div class="placeholder-msg">👈 Select a shipment from the list</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE: EXCURSIONS
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-excursions" class="page">
+  <div class="page-header">
+    <h1>Excursion Events Report</h1>
+    <p class="page-sub">All temperature excursions and data gaps across all shipments</p>
+  </div>
+  <div class="filter-bar">
+    <label>Filter by type:
+      <select id="exc-filter" onchange="filterExcursions()">
+        <option value="ALL">All</option>
+        <option value="HIGH">HIGH</option>
+        <option value="LOW">LOW</option>
+        <option value="DATA_GAP">DATA_GAP</option>
+      </select>
+    </label>
+  </div>
+  <div class="table-wrap">
+    <table id="excursion-table">
+      <thead>
+        <tr>
+          <th>Shipment</th><th>No.</th><th>Type</th>
+          <th>Start</th><th>End</th><th>Duration (min)</th>
+          <th>Peak Temp</th><th>Leg</th><th>Party</th><th>Counts</th>
+        </tr>
+      </thead>
+      <tbody id="excursion-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE: CLAIMS & PENALTIES
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-claims" class="page">
+  <div class="page-header">
+    <h1>Claims &amp; Penalties Dashboard</h1>
+    <p class="page-sub">Carrier liability allocation and contract penalty calculations</p>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>Penalties by Carrier</h3>
+      <canvas id="penaltyChart" height="250"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Claims by Party</h3>
+      <canvas id="claimsChart" height="250"></canvas>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('penalties')">Penalties</button>
+    <button class="tab-btn" onclick="showTab('claims-tab')">Claims</button>
+  </div>
+
+  <div id="tab-penalties" class="tab-content active">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Shipment</th><th>Leg</th><th>Carrier</th>
+            <th>Attributed Min</th><th>Minute Penalty (₹)</th>
+            <th>Pre-cool Penalty (₹)</th><th>Cap?</th><th>Total (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="penalties-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="tab-claims-tab" class="tab-content">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Shipment</th><th>Consignment</th><th>Claim Value (₹)</th>
+            <th>Party</th><th>Attributed Min</th>
+            <th>Share Before Cap (₹)</th><th>Share After Cap (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="claims-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE: CERTIFICATES
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-certificates" class="page">
+  <div class="page-header">
+    <h1>Release Certificates</h1>
+    <p class="page-sub">Shipments cleared as compliant with cold-chain requirements</p>
+  </div>
+  <div class="cert-grid" id="cert-grid">
+    <div class="loading">Loading certificates…</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PAGE: QUARANTINE REPORT
+═══════════════════════════════════════════════════════════════ -->
+<div id="page-quarantine" class="page">
+  <div class="page-header">
+    <h1>Quarantine Deviation Report</h1>
+    <p class="page-sub">Shipments flagged for quarantine or rejection with full audit trail</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Shipment</th><th>Route</th><th>Consignment</th><th>Profile</th>
+          <th>Decision</th><th>Reason</th><th>Excursion Min</th>
+          <th>Events</th><th>MKT (°C)</th>
+        </tr>
+      </thead>
+      <tbody id="quarantine-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SHIPMENT DETAIL MODAL
+═══════════════════════════════════════════════════════════════ -->
+<div id="modal-overlay" class="modal-overlay hidden" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

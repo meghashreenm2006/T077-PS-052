@@ -1,0 +1,41 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-001
+======================================================================
+Origin     : Mysuru
+Destination: Kochi
+Departure  : 2026-10-01 10:00:00
+Logger Owner: CARRIER
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-001-C1  |  Vaccine 2 8  |  Lot: LOT91405  |  Profile: PRF-01  |  Rs 150,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-01  |  PASSIVE_BOX  |  2026-10-01 10:00:00 → 2026-10-01 16:00:00  |  Rs 45,000.00
+  Leg 2  |  CAR-03  |  PASSIVE_BOX  |  2026-10-01 16:00:00 → 2026-10-02 00:00:00  |  Rs 30,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-001-C1  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.01 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  No temperature excursions detected.
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-01  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-001-C1  |  Released: 2026-11-11 21:34:16  |  MKT: 5.01 °C  |  Exc Min: 0.00
+  Consignment SHP-001-C1 released compliant with profile PRF-01.
+
+======================================================================

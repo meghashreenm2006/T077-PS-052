@@ -1,0 +1,53 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-005
+======================================================================
+Origin     : Mangaluru
+Destination: Coimbatore
+Departure  : 2026-10-06 13:48:00
+Logger Owner: CARRIER
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-005-C1  |  Insulin 2 8 Strict  |  Lot: LOT47666  |  Profile: PRF-03  |  Rs 250,000.00
+  SHP-005-C2  |  Insulin 2 8 Strict  |  Lot: LOT33918  |  Profile: PRF-03  |  Rs 900,000.00
+  SHP-005-C3  |  Insulin 2 8 Strict  |  Lot: LOT96740  |  Profile: PRF-03  |  Rs 150,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-04  |  REEFER  |  2026-10-06 13:48:00 → 2026-10-06 19:48:00  |  Rs 18,000.00
+  Leg 2  |  CAR-04  |  REEFER  |  2026-10-06 19:48:00 → 2026-10-07 01:48:00  |  Rs 45,000.00
+  Leg 3  |  CAR-05  |  PASSIVE_BOX  |  2026-10-07 01:48:00 → 2026-10-07 07:48:00  |  Rs 36,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-005-C1  |  Profile: PRF-03  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.12 °C  |  Exc Min: 20.02  |  Reason: COMPLIANT
+  Consignment: SHP-005-C2  |  Profile: PRF-03  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.12 °C  |  Exc Min: 20.02  |  Reason: COMPLIANT
+  Consignment: SHP-005-C3  |  Profile: PRF-03  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.12 °C  |  Exc Min: 20.02  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-06 19:47:59 → 2026-10-06 19:48:00  |  0.02 min  |  Peak: 10.0 °C  |  Leg 1 / CAR-04  |  Counts: true
+  #2  HIGH  |  2026-10-06 19:48:00 → 2026-10-06 19:58:00  |  10.00 min  |  Peak: 10.0 °C  |  Leg 1 / 3PL  |  Counts: true
+  #3  HIGH  |  2026-10-06 19:58:00 → 2026-10-06 20:08:00  |  10.00 min  |  Peak: 10.0 °C  |  Leg 2 / CAR-04  |  Counts: true
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-04  |  0.02 min  |  Minute Penalty: Rs 0.83  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.83
+  Leg 2  |  CAR-04  |  10.00 min  |  Minute Penalty: Rs 500.00  |  Precool: Rs 2000.00  |  Cap: false  |  TOTAL: Rs 2500.00
+  Leg 3  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-005-C1  |  Released: 2026-11-11 21:34:16  |  MKT: 5.12 °C  |  Exc Min: 20.02
+  Consignment SHP-005-C1 released compliant with profile PRF-03.
+  SHP-005-C2  |  Released: 2026-11-11 21:34:16  |  MKT: 5.12 °C  |  Exc Min: 20.02
+  Consignment SHP-005-C2 released compliant with profile PRF-03.
+  SHP-005-C3  |  Released: 2026-11-11 21:34:16  |  MKT: 5.12 °C  |  Exc Min: 20.02
+  Consignment SHP-005-C3 released compliant with profile PRF-03.
+
+======================================================================

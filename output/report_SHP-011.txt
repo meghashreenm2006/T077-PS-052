@@ -1,0 +1,45 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-011
+======================================================================
+Origin     : Vijayawada
+Destination: Mangaluru
+Departure  : 2026-10-14 06:00:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-011-C1  |  Vaccine 2 8  |  Lot: LOT35874  |  Profile: PRF-01  |  Rs 150,000.00
+  SHP-011-C2  |  Vaccine 2 8  |  Lot: LOT58233  |  Profile: PRF-01  |  Rs 600,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-01  |  PASSIVE_BOX  |  2026-10-14 06:00:00 → 2026-10-14 11:00:00  |  Rs 24,000.00
+  Leg 2  |  CAR-04  |  PASSIVE_BOX  |  2026-10-14 11:00:00 → 2026-10-14 15:00:00  |  Rs 30,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-011-C1  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.09 °C  |  Exc Min: 8.00  |  Reason: COMPLIANT
+  Consignment: SHP-011-C2  |  Profile: PRF-01  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.09 °C  |  Exc Min: 8.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-14 11:00:00 → 2026-10-14 11:08:00  |  8.00 min  |  Peak: 9.5 °C  |  Leg 1 / 3PL  |  Counts: true
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-01  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 2000.00  |  Cap: false  |  TOTAL: Rs 2000.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-011-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 5.09 °C  |  Exc Min: 8.00
+  Consignment SHP-011-C1 released compliant with profile PRF-01.
+  SHP-011-C2  |  Released: 2026-11-11 21:34:17  |  MKT: 5.09 °C  |  Exc Min: 8.00
+  Consignment SHP-011-C2 released compliant with profile PRF-01.
+
+======================================================================

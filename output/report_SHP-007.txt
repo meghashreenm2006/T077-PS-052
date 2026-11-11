@@ -1,0 +1,46 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-007
+======================================================================
+Origin     : Belagavi
+Destination: Mysuru
+Departure  : 2026-10-09 05:12:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-007-C1  |  Frozen Minus18  |  Lot: LOT43969  |  Profile: PRF-02  |  Rs 1,800,000.00
+  SHP-007-C2  |  Frozen Minus18  |  Lot: LOT66203  |  Profile: PRF-02  |  Rs 900,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-01  |  REEFER  |  2026-10-09 05:12:00 → 2026-10-09 13:12:00  |  Rs 45,000.00
+  Leg 2  |  CAR-01  |  REEFER  |  2026-10-09 13:12:00 → 2026-10-09 21:12:00  |  Rs 24,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-007-C1  |  Profile: PRF-02  |  Eval #1  |  Decision: REJECT  |  MKT: -20.19 °C  |  Exc Min: 200.00  |  Reason: HARD_LIMIT_BREACH
+  Consignment: SHP-007-C2  |  Profile: PRF-02  |  Eval #1  |  Decision: REJECT  |  MKT: -20.19 °C  |  Exc Min: 200.00  |  Reason: HARD_LIMIT_BREACH
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-09 06:52:00 → 2026-10-09 09:22:00  |  150.00 min  |  Peak: -14.0 °C  |  Leg 1 / CAR-01  |  Counts: true
+  #2  HIGH  |  2026-10-09 15:12:00 → 2026-10-09 16:02:00  |  50.00 min  |  Peak: -16.6 °C  |  Leg 2 / CAR-01  |  Counts: true
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-01  |  150.00 min  |  Minute Penalty: Rs 7500.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 7500.00
+  Leg 2  |  CAR-01  |  50.00 min  |  Minute Penalty: Rs 2500.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 2500.00
+
+CLAIM LIABILITY
+----------------------------------------
+  Consignment: SHP-007-C1  |  Claim: Rs 1800000.00  |  Party: CAR-01  |  150.00 min  |  Share Before Cap: Rs 1350000.00  |  Share After Cap: Rs 1000000.00
+  Consignment: SHP-007-C1  |  Claim: Rs 1800000.00  |  Party: CAR-01  |  50.00 min  |  Share Before Cap: Rs 450000.00  |  Share After Cap: Rs 800000.00
+  Consignment: SHP-007-C2  |  Claim: Rs 900000.00  |  Party: CAR-01  |  150.00 min  |  Share Before Cap: Rs 675000.00  |  Share After Cap: Rs 675000.00
+  Consignment: SHP-007-C2  |  Claim: Rs 900000.00  |  Party: CAR-01  |  50.00 min  |  Share Before Cap: Rs 225000.00  |  Share After Cap: Rs 225000.00
+
+RELEASE CERTIFICATES
+----------------------------------------
+  No release certificates (consignment not released).
+
+======================================================================

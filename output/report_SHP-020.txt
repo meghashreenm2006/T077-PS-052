@@ -1,0 +1,43 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-020
+======================================================================
+Origin     : Belagavi
+Destination: Coimbatore
+Departure  : 2026-10-25 22:48:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-020-C1  |  Crt 15 25  |  Lot: LOT67557  |  Profile: PRF-05  |  Rs 150,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-03  |  REEFER  |  2026-10-25 22:48:00 → 2026-10-26 03:48:00  |  Rs 18,000.00
+  Leg 2  |  CAR-01  |  REEFER  |  2026-10-26 03:48:00 → 2026-10-26 10:48:00  |  Rs 30,000.00
+  Leg 3  |  CAR-03  |  REEFER  |  2026-10-26 10:48:00 → 2026-10-26 14:48:00  |  Rs 45,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-020-C1  |  Profile: PRF-05  |  Eval #1  |  Decision: RELEASE  |  MKT: 19.98 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  No temperature excursions detected.
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-01  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-020-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 19.98 °C  |  Exc Min: 0.00
+  Consignment SHP-020-C1 released compliant with profile PRF-05.
+
+======================================================================

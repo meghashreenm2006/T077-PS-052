@@ -1,0 +1,47 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-018
+======================================================================
+Origin     : Mysuru
+Destination: Hubballi
+Departure  : 2026-10-23 11:24:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-018-C1  |  Chilled Food 0 4  |  Lot: LOT31537  |  Profile: PRF-04  |  Rs 150,000.00
+  SHP-018-C2  |  Chilled Food 0 4  |  Lot: LOT91553  |  Profile: PRF-04  |  Rs 600,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-02  |  REEFER  |  2026-10-23 11:24:00 → 2026-10-23 21:24:00  |  Rs 18,000.00
+  Leg 2  |  CAR-04  |  REEFER  |  2026-10-23 21:24:00 → 2026-10-24 07:24:00  |  Rs 36,000.00
+  Leg 3  |  CAR-03  |  REEFER  |  2026-10-24 07:24:00 → 2026-10-24 15:24:00  |  Rs 24,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-018-C1  |  Profile: PRF-04  |  Eval #1  |  Decision: RELEASE  |  MKT: 2.01 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+  Consignment: SHP-018-C2  |  Profile: PRF-04  |  Eval #1  |  Decision: RELEASE  |  MKT: 2.01 °C  |  Exc Min: 0.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  No temperature excursions detected.
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-02  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 3  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-018-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 2.01 °C  |  Exc Min: 0.00
+  Consignment SHP-018-C1 released compliant with profile PRF-04.
+  SHP-018-C2  |  Released: 2026-11-11 21:34:17  |  MKT: 2.01 °C  |  Exc Min: 0.00
+  Consignment SHP-018-C2 released compliant with profile PRF-04.
+
+======================================================================

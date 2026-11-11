@@ -1,0 +1,49 @@
+======================================================================
+COLD-CHAIN COMPLIANCE REPORT  —  SHP-014
+======================================================================
+Origin     : Coimbatore
+Destination: Kochi
+Departure  : 2026-10-18 07:36:00
+Logger Owner: 3PL
+Insured Value: Rs 1,000,000.00
+
+CONSIGNMENTS
+----------------------------------------
+  SHP-014-C1  |  Insulin 2 8 Strict  |  Lot: LOT95679  |  Profile: PRF-03  |  Rs 400,000.00
+  SHP-014-C2  |  Insulin 2 8 Strict  |  Lot: LOT47593  |  Profile: PRF-03  |  Rs 150,000.00
+
+TRANSPORT LEGS
+----------------------------------------
+  Leg 1  |  CAR-05  |  REEFER  |  2026-10-18 07:36:00 → 2026-10-18 17:36:00  |  Rs 24,000.00
+  Leg 2  |  CAR-01  |  REEFER  |  2026-10-18 17:36:00 → 2026-10-19 01:36:00  |  Rs 24,000.00
+  Leg 3  |  CAR-03  |  REEFER  |  2026-10-19 01:36:00 → 2026-10-19 11:36:00  |  Rs 24,000.00
+  Leg 4  |  CAR-04  |  REEFER  |  2026-10-19 11:36:00 → 2026-10-19 18:36:00  |  Rs 36,000.00
+
+COMPLIANCE DECISIONS
+----------------------------------------
+  Consignment: SHP-014-C1  |  Profile: PRF-03  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.06 °C  |  Exc Min: 30.00  |  Reason: COMPLIANT
+  Consignment: SHP-014-C2  |  Profile: PRF-03  |  Eval #1  |  Decision: RELEASE  |  MKT: 5.06 °C  |  Exc Min: 30.00  |  Reason: COMPLIANT
+
+TEMPERATURE EXCURSIONS
+----------------------------------------
+  #1  HIGH  |  2026-10-18 21:46:00 → 2026-10-18 22:16:00  |  30.00 min  |  Peak: 9.4 °C  |  Leg 2 / CAR-01  |  Counts: true
+
+CARRIER PENALTIES
+----------------------------------------
+  Leg 1  |  CAR-05  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 2  |  CAR-01  |  30.00 min  |  Minute Penalty: Rs 1500.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 1500.00
+  Leg 3  |  CAR-03  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+  Leg 4  |  CAR-04  |  0.00 min  |  Minute Penalty: Rs 0.00  |  Precool: Rs 0.00  |  Cap: false  |  TOTAL: Rs 0.00
+
+CLAIM LIABILITY
+----------------------------------------
+  No claims raised.
+
+RELEASE CERTIFICATES
+----------------------------------------
+  SHP-014-C1  |  Released: 2026-11-11 21:34:17  |  MKT: 5.06 °C  |  Exc Min: 30.00
+  Consignment SHP-014-C1 released compliant with profile PRF-03.
+  SHP-014-C2  |  Released: 2026-11-11 21:34:17  |  MKT: 5.06 °C  |  Exc Min: 30.00
+  Consignment SHP-014-C2 released compliant with profile PRF-03.
+
+======================================================================
