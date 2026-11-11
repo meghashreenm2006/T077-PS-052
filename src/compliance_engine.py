@@ -31,7 +31,6 @@ class ComplianceEngine:
         self.custody_overrides = defaultdict(list) # shipment_id -> list of reason strings
         self.re_ice_events = defaultdict(list) # shipment_id -> list of timestamps
         self.evaluation_counts = defaultdict(int) # shipment_id -> int
-        self.excursion_counters = defaultdict(lambda: 1)  # shipment_id -> int (persists across EVALUATEs)
 
         # Outputs
         self.output_excursions = [] # list of dicts for excursions.csv
@@ -202,6 +201,60 @@ class ComplianceEngine:
             return legs[0]["leg_no"], legs[0]["carrier_id"]
         return 1, "UNKNOWN"
 
+    @staticmethod
+    def _allocate_claim_shares(claim_value, party_minutes, allocated_by_party, party_cap):
+        """Allocate one claim across attributable parties under cumulative caps.
+
+        Returns (shares_before_cap, shares_after_cap, unallocated_amount).
+        The supplied allocated_by_party mapping is updated in place.
+        """
+        liable_minutes = {
+            party: float(minutes)
+            for party, minutes in party_minutes.items()
+            if float(minutes) > 0
+        }
+        total_minutes = sum(liable_minutes.values())
+        if total_minutes <= 0:
+            return {}, {}, float(claim_value)
+
+        shares_before = {
+            party: float(claim_value) * minutes / total_minutes
+            for party, minutes in liable_minutes.items()
+        }
+        shares_after = {}
+        excess_pool = 0.0
+
+        for party, proposed_share in shares_before.items():
+            remaining_cap = max(0.0, float(party_cap) - allocated_by_party[party])
+            accepted = min(proposed_share, remaining_cap)
+            shares_after[party] = accepted
+            allocated_by_party[party] += accepted
+            excess_pool += proposed_share - accepted
+
+        while excess_pool > 0.005:
+            eligible = {
+                party: minutes for party, minutes in liable_minutes.items()
+                if float(party_cap) - allocated_by_party[party] > 0.005
+            }
+            eligible_minutes = sum(eligible.values())
+            if eligible_minutes <= 0:
+                break
+
+            distributed = 0.0
+            for party, minutes in eligible.items():
+                proposed = excess_pool * (minutes / eligible_minutes)
+                room = max(0.0, float(party_cap) - allocated_by_party[party])
+                accepted = min(proposed, room)
+                shares_after[party] += accepted
+                allocated_by_party[party] += accepted
+                distributed += accepted
+
+            if distributed <= 0.005:
+                break
+            excess_pool = max(0.0, excess_pool - distributed)
+
+        return shares_before, shares_after, max(0.0, excess_pool)
+
     # =========================================================================
     # 5. COMMAND: EVALUATE
     # =========================================================================
@@ -277,8 +330,7 @@ class ComplianceEngine:
         excursions_by_profile = {} # profile_id -> list of raw excursions
         excursions_recorded_for_shipment = False
 
-        # Use persistent per-shipment counter so second EVALUATE of same shipment continues numbering
-        excursion_counter = self.excursion_counters[shipment_id]
+        excursion_counter = 1
         shipment_excursion_rows = []
 
         # Track penalties across legs for this evaluation
@@ -408,7 +460,7 @@ class ComplianceEngine:
                     "consignment_id": cons["consignment_id"],
                     "released_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     "cumulative_minutes": f"{cumulative_minutes:.2f}",
-                    "mkt_c": f"{mkt_c:.2f}" if mkt_c is not None else "0.00",
+                    "mkt_c": f"{mkt_c:.2f}",
                     "certificate_text": f"Consignment {cons['consignment_id']} released compliant with profile {pid}."
                 })
 
@@ -509,66 +561,69 @@ class ComplianceEngine:
                 "penalty_total": f"{penalty_total:.2f}"
             })
 
-        # Calculate Claims for REJECTED consignments
+        # Calculate claims for rejected consignments. Liability is grouped by
+        # responsible PARTY (carrier ID or 3PL), not by transport leg. The
+        # insurance cap is cumulative for each party across this shipment.
+        insurance_cap = float(shipment["insured_value"])
+        allocated_by_party = defaultdict(float)
+
         for cons in consignments:
-            # Find decision for this consignment in current eval
             dec_entry = next(
-                (d for d in self.output_decisions if d["consignment_id"] == cons["consignment_id"] and d["evaluation_no"] == eval_no),
+                (d for d in self.output_decisions
+                 if d["consignment_id"] == cons["consignment_id"]
+                 and d["evaluation_no"] == eval_no),
                 None
             )
-            if dec_entry and dec_entry["decision"] == "REJECT":
-                claim_val = cons["value_rs"]
-                total_attr_mins = sum(leg_minutes.values())
-                if total_attr_mins <= 0:
-                    total_attr_mins = 1.0 # fallback
+            if not dec_entry or dec_entry["decision"] != "REJECT":
+                continue
 
-                # Liability split with redistribution if leg cap is hit (EC7)
-                cap = shipment["insured_value"] # Rs 10 lakh per leg / party cap
+            claim_val = float(cons["value_rs"])
+            shares_before, shares_after, excess_pool = self._allocate_claim_shares(
+                claim_val, party_minutes, allocated_by_party, insurance_cap
+            )
+            liable_minutes = {
+                party: float(minutes)
+                for party, minutes in party_minutes.items()
+                if float(minutes) > 0
+            }
 
-                liable_legs = [l for l in legs if leg_minutes[l["leg_no"]] > 0]
-                if not liable_legs and legs:
-                    liable_legs = legs
+            # No attributable excursion time means no party can be assigned liability.
+            if not liable_minutes:
+                self.output_claims.append({
+                    "shipment_id": shipment_id,
+                    "consignment_id": cons["consignment_id"],
+                    "claim_value": f"{claim_val:.2f}",
+                    "party": "UNALLOCATED",
+                    "attributed_minutes": "0.00",
+                    "share_before_cap": f"{claim_val:.2f}",
+                    "share_after_cap": "0.00"
+                })
+                continue
 
-                shares_before = {}
-                for l in liable_legs:
-                    l_no = l["leg_no"]
-                    mins = leg_minutes[l_no]
-                    shares_before[l_no] = claim_val * (mins / total_attr_mins)
+            for party, minutes in liable_minutes.items():
+                self.output_claims.append({
+                    "shipment_id": shipment_id,
+                    "consignment_id": cons["consignment_id"],
+                    "claim_value": f"{claim_val:.2f}",
+                    "party": party,
+                    "attributed_minutes": f"{minutes:.2f}",
+                    "share_before_cap": f"{shares_before[party]:.2f}",
+                    "share_after_cap": f"{shares_after[party]:.2f}"
+                })
 
-                # Check caps and redistribute excess
-                shares_after = {}
-                excess_pool = 0.0
-                non_capped_legs = []
-
-                for l_no, share in shares_before.items():
-                    if share > cap:
-                        shares_after[l_no] = cap
-                        excess_pool += (share - cap)
-                    else:
-                        shares_after[l_no] = share
-                        non_capped_legs.append(l_no)
-
-                # Redistribute excess to non-capped legs proportionally (EC7)
-                if excess_pool > 0 and non_capped_legs:
-                    non_capped_min_total = sum(leg_minutes[l_no] for l_no in non_capped_legs)
-                    if non_capped_min_total > 0:
-                        for l_no in non_capped_legs:
-                            shares_after[l_no] += excess_pool * (leg_minutes[l_no] / non_capped_min_total)
-
-                for l in liable_legs:
-                    l_no = l["leg_no"]
-                    self.output_claims.append({
-                        "shipment_id": shipment_id,
-                        "consignment_id": cons["consignment_id"],
-                        "claim_value": f"{claim_val:.2f}",
-                        "party": l["carrier_id"],
-                        "attributed_minutes": f"{leg_minutes[l_no]:.2f}",
-                        "share_before_cap": f"{shares_before[l_no]:.2f}",
-                        "share_after_cap": f"{shares_after[l_no]:.2f}"
-                    })
-
-        # Save excursion counter so second EVALUATE continues numbering from where this left off
-        self.excursion_counters[shipment_id] = excursion_counter
+            # If every attributable party has reached its cap, preserve the
+            # outstanding amount as explicitly unallocated, never as liability
+            # assigned to a party with zero attributed minutes.
+            if excess_pool > 0.005:
+                self.output_claims.append({
+                    "shipment_id": shipment_id,
+                    "consignment_id": cons["consignment_id"],
+                    "claim_value": f"{claim_val:.2f}",
+                    "party": "UNALLOCATED",
+                    "attributed_minutes": "0.00",
+                    "share_before_cap": f"{excess_pool:.2f}",
+                    "share_after_cap": "0.00"
+                })
 
     def _split_interval(self, shipment_id, start_ts, end_ts):
         """
@@ -609,134 +664,9 @@ class ComplianceEngine:
     # 6. COMMAND: PRINT_REPORTS & WRITE OUTPUT CSVS
     # =========================================================================
     def print_reports(self, shipment_id, out_dir="output"):
-        """
-        Write per-shipment plain-text report to <out_dir>/report_<shipment_id>.txt.
-
-        Reuses the already-computed output lists to extract rows for this shipment.
-        Called once per PRINT_REPORTS command in commands.txt; the full CSV export
-        (export_all_csvs) is called automatically at the end of execute_command_file.
-        """
         os.makedirs(out_dir, exist_ok=True)
-        report_path = os.path.join(out_dir, f"report_{shipment_id}.txt")
-
-        shipment = self.shipments.get(shipment_id, {})
-        consignments = self.consignments.get(shipment_id, [])
-        legs = self.legs.get(shipment_id, [])
-
-        shp_decisions = [d for d in self.output_decisions if d["shipment_id"] == shipment_id]
-        shp_excursions = [e for e in self.output_excursions if e["shipment_id"] == shipment_id]
-        shp_penalties = [p for p in self.output_penalties if p["shipment_id"] == shipment_id]
-        shp_claims = [c for c in self.output_claims if c["shipment_id"] == shipment_id]
-        shp_certs = [c for c in self.output_certificates if c["shipment_id"] == shipment_id]
-
-        lines = []
-        sep = "=" * 70
-
-        lines.append(sep)
-        lines.append(f"COLD-CHAIN COMPLIANCE REPORT  —  {shipment_id}")
-        lines.append(sep)
-        lines.append(f"Origin     : {shipment.get('origin_city', 'N/A')}")
-        lines.append(f"Destination: {shipment.get('destination_city', 'N/A')}")
-        lines.append(f"Departure  : {shipment.get('planned_departure', 'N/A')}")
-        lines.append(f"Logger Owner: {shipment.get('logger_owner', 'N/A')}")
-        lines.append(f"Insured Value: Rs {shipment.get('insured_value', 0):,.2f}")
-        lines.append("")
-
-        # --- Consignments ---
-        lines.append("CONSIGNMENTS")
-        lines.append("-" * 40)
-        for c in consignments:
-            lines.append(f"  {c['consignment_id']}  |  {c['product']}  |  Lot: {c['lot_no']}  |  Profile: {c['profile_id']}  |  Rs {c['value_rs']:,.2f}")
-        lines.append("")
-
-        # --- Transport Legs ---
-        lines.append("TRANSPORT LEGS")
-        lines.append("-" * 40)
-        for leg in legs:
-            lines.append(f"  Leg {leg['leg_no']}  |  {leg['carrier_id']}  |  {leg['vehicle_type']}  |  {leg['start_ts']} → {leg['end_ts']}  |  Rs {leg['freight_charge']:,.2f}")
-        lines.append("")
-
-        # --- Decisions ---
-        lines.append("COMPLIANCE DECISIONS")
-        lines.append("-" * 40)
-        for d in shp_decisions:
-            lines.append(
-                f"  Consignment: {d['consignment_id']}  |  Profile: {d['profile_id']}  |  "
-                f"Eval #{d['evaluation_no']}  |  Decision: {d['decision']}  |  "
-                f"MKT: {d['mkt_c']} °C  |  Exc Min: {d['cumulative_minutes']}  |  "
-                f"Reason: {d['reason_codes']}"
-            )
-        lines.append("")
-
-        # --- Excursions ---
-        lines.append("TEMPERATURE EXCURSIONS")
-        lines.append("-" * 40)
-        temp_excursions = [e for e in shp_excursions if e["type"] != "DATA_GAP"]
-        if temp_excursions:
-            for e in temp_excursions:
-                lines.append(
-                    f"  #{e['excursion_no']}  {e['type']}  |  {e['start_ts']} → {e['end_ts']}  |  "
-                    f"{e['duration_minutes']} min  |  Peak: {e['max_temp_c']} °C  |  "
-                    f"Leg {e['leg_no']} / {e['party']}  |  Counts: {e['counts_toward_limit']}"
-                )
-        else:
-            lines.append("  No temperature excursions detected.")
-
-        data_gaps = [e for e in shp_excursions if e["type"] == "DATA_GAP"]
-        if data_gaps:
-            lines.append("")
-            lines.append("DATA GAPS")
-            lines.append("-" * 40)
-            for g in data_gaps:
-                lines.append(f"  #{g['excursion_no']}  {g['start_ts']} → {g['end_ts']}  |  {g['duration_minutes']} min  |  Leg {g['leg_no']} / {g['party']}")
-        lines.append("")
-
-        # --- Penalties ---
-        lines.append("CARRIER PENALTIES")
-        lines.append("-" * 40)
-        if shp_penalties:
-            for p in shp_penalties:
-                lines.append(
-                    f"  Leg {p['leg_no']}  |  {p['carrier_id']}  |  {p['attributed_minutes']} min  |  "
-                    f"Minute Penalty: Rs {p['minute_penalty']}  |  Precool: Rs {p['precool_penalty']}  |  "
-                    f"Cap: {p['cap_applied']}  |  TOTAL: Rs {p['penalty_total']}"
-                )
-        else:
-            lines.append("  No penalties.")
-        lines.append("")
-
-        # --- Claims ---
-        lines.append("CLAIM LIABILITY")
-        lines.append("-" * 40)
-        if shp_claims:
-            for c in shp_claims:
-                lines.append(
-                    f"  Consignment: {c['consignment_id']}  |  Claim: Rs {c['claim_value']}  |  "
-                    f"Party: {c['party']}  |  {c['attributed_minutes']} min  |  "
-                    f"Share Before Cap: Rs {c['share_before_cap']}  |  Share After Cap: Rs {c['share_after_cap']}"
-                )
-        else:
-            lines.append("  No claims raised.")
-        lines.append("")
-
-        # --- Certificates ---
-        lines.append("RELEASE CERTIFICATES")
-        lines.append("-" * 40)
-        if shp_certs:
-            for cert in shp_certs:
-                lines.append(
-                    f"  {cert['consignment_id']}  |  Released: {cert['released_at']}  |  "
-                    f"MKT: {cert['mkt_c']} °C  |  Exc Min: {cert['cumulative_minutes']}"
-                )
-                lines.append(f"  {cert['certificate_text']}")
-        else:
-            lines.append("  No release certificates (consignment not released).")
-
-        lines.append("")
-        lines.append(sep)
-
-        with open(report_path, mode="w", encoding="utf-8") as fh:
-            fh.write("\n".join(lines) + "\n")
+        # Note: We will write the aggregated evaluation CSVs at the end of all commands
+        pass
 
     def export_all_csvs(self, out_dir="output"):
         os.makedirs(out_dir, exist_ok=True)

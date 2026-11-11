@@ -3,147 +3,63 @@
 **Team ID:** T077  
 **Problem Statement:** PS-052
 
----
+## Project overview
 
-## Project Overview
+A Python command-driven engine that evaluates temperature-sensitive shipments using product profiles, shipment/consignment details, transport legs, handoff records, and temperature-logger CSV files. It detects excursions and data gaps, calculates MKT, records release/quarantine/reject decisions, attributes events to responsible carriers or the 3PL, calculates carrier penalties, allocates rejected-consignment claims, and exports auditable CSV reports.
 
-The Cold-Chain Shipment Temperature Compliance and Claims Engine is a production-grade system for monitoring temperature-sensitive shipments in pharmaceutical, vaccine, and perishable food logistics.
+## Technology
 
-The system processes temperature logger time-series data, accurately identifies temperature excursions (including ongoing trailing excursions and freezing events), monitors data transmission dropouts, calculates Mean Kinetic Temperature (MKT) via Arrhenius kinetics, renders auditable consignment release decisions, allocates multi-modal carrier liability, calculates contract penalties, and produces compliance certificates and claim settlement reports.
+- Python 3.10+
+- Python standard library (`csv`, `datetime`, `math`, `unittest`)
+- CSV input and output
 
----
-
-## ✅ Phase Status
-
-| Phase | Feature | Status |
-|---|---|---|
-| Phase 1 | Core Engine — Excursion detection, MKT, Decisions, CLI | ✅ Complete |
-| Phase 2 | Consignment, carrier, transport-leg, chain-of-custody management | ✅ Complete |
-| Phase 3 | Multi-modal liability allocation, penalty calculation, claim settlement | ✅ Complete |
-| Phase 4 | Release certificates, quarantine deviation reports, claim invoices | ✅ Complete |
-| Phase 5 | FastAPI backend, Pydantic v2, SQLite/SQLAlchemy, HTML/CSS/JS dashboard | ✅ Complete |
-| Phase 6 | Integration — real sample data wired to API and dashboard | ✅ Complete |
-
----
-
-## Project Structure
+## Project structure
 
 ```text
 T077-PS-052/
-├── src/
-│   ├── __init__.py
-│   ├── main.py                  # CLI interface (preserved)
-│   ├── profiles.py              # Product temperature profiles
-│   ├── excursion_detector.py    # Excursion & data-gap detector
-│   ├── mkt_calculator.py        # Arrhenius MKT calculator
-│   ├── decision_engine.py       # Compliance decision engine
-│   ├── shipment_processor.py    # End-to-end shipment processor
-│   ├── compliance_engine.py     # Full engine: multi-leg, claims, penalties
-│   ├── database.py              # SQLAlchemy models + SQLite setup (NEW)
-│   ├── api.py                   # FastAPI backend (extended Phase 5/6)
-│   └── static/
-│       ├── index.html           # Dashboard HTML (NEW)
-│       ├── style.css            # Dashboard CSS (NEW)
-│       └── app.js               # Dashboard JavaScript (NEW)
-├── tests/
-│   ├── test_core.py             # 70 unit/integration tests
-│   ├── test_compliance_engine.py
-│   └── test_main.py
-├── sample_data/
-│   └── T077-PS-052-sample-data/
-│       ├── commands.txt
-│       ├── shipments.csv        # 20 shipments
-│       ├── consignments.csv     # 35 consignments
-│       ├── legs.csv             # 57 transport legs
-│       ├── handoffs.csv         # Custody handoff events
-│       ├── profiles.csv         # 5 temperature profiles
-│       └── readings_shp_*.csv   # Temperature logger data
-├── output/
-│   ├── decisions.csv
-│   ├── excursions.csv
-│   ├── penalties.csv
-│   ├── claims.csv
-│   └── release_certificates.csv
-├── docs/
-│   ├── design.md
-│   └── decision-log.md
-├── coldchain.db                 # SQLite database (auto-created on first run)
-├── requirements.txt
+├── docs/                 # Design and decision log
+├── output/               # Generated CSV reports
+├── sample_data/          # Shipment, profile, handoff and logger CSV inputs
+├── src/                  # Compliance and decision engine modules
+├── tests/                # Automated tests
+├── run_project.py        # Runs the complete sample command pipeline
 └── README.md
 ```
 
----
+## Run the complete sample project
 
-## ⚡ Quick Start — Windows PowerShell
+Open Command Prompt in this folder and run:
 
-### Step 1 — Install dependencies (run once)
-
-```powershell
-cd "C:\Users\Megha Shree\Desktop\T077-PS-052"
-pip install -r requirements.txt
+```bash
+python run_project.py
 ```
 
-### Step 2 — Start the web application
+The command file is `sample_data/commands.txt`. The pipeline writes:
 
-```powershell
-cd "C:\Users\Megha Shree\Desktop\T077-PS-052"
-python -m uvicorn src.api:app --host 0.0.0.0 --port 8000
-```
+- `output/excursions.csv`
+- `output/decisions.csv`
+- `output/penalties.csv`
+- `output/claims.csv`
+- `output/release_certificates.csv`
 
-### Step 3 — Open the dashboard
+## Easy run on Windows
 
-Open your browser and go to:
-```
-http://localhost:8000
-```
+Double-click `RUN_ALL.bat` to run all automated tests first and, if they pass, execute the full sample pipeline.
 
-The first startup automatically loads all 20 sample shipments into the database. This takes about 5–10 seconds.
+## Run automated tests
 
----
-
-## 🖥 Running the CLI (preserved)
-
-```powershell
-cd "C:\Users\Megha Shree\Desktop\T077-PS-052"
-python -m src.main
-```
-
----
-
-## 🧪 Running the Tests
-
-```powershell
-cd "C:\Users\Megha Shree\Desktop\T077-PS-052"
+```bash
 python -m unittest discover tests -v
 ```
 
----
+The current regression suite contains 41 tests.
 
-## 🌐 API Endpoints
+## BR-08 claims and insurance behaviour
 
-| Method | URL | Description |
-|---|---|---|
-| GET | `/` | Dashboard HTML |
-| GET | `/api/dashboard` | Live summary stats for all 20 shipments |
-| GET | `/api/shipments/{id}/readings` | Temperature readings for Chart.js |
-| GET | `/api/shipments/{id}/detail` | Full shipment audit from database |
-| GET | `/api/reports/excursions` | All excursion events |
-| GET | `/api/reports/penalties` | All carrier penalties |
-| GET | `/api/reports/claims` | All liability claims |
-| GET | `/api/reports/certificates` | All release certificates |
-| GET | `/api/reports/quarantine` | Quarantine deviation report |
-| GET | `/api/reports/claim-invoice/{id}` | Claim invoice for one shipment |
-| POST | `/api/run` | Upload CSV files and run evaluation |
-| GET | `/docs` | Auto-generated API documentation |
+- Claim liability is grouped by responsible party (carrier ID or `3PL`), not duplicated by transport leg.
+- The configured shipment insurance value is applied as a cumulative cap per party across all rejected consignments in that shipment. The supplied sample data sets this to ₹10,00,000.
+- Excess is redistributed only to parties with positive attributed excursion minutes and remaining cap capacity.
+- A party with zero attributed excursion minutes receives zero liability.
+- If all attributable parties reach their caps, the remainder is recorded as `UNALLOCATED`; it is not assigned to an unrelated party.
 
----
-
-## Technology Stack
-
-| Layer | Technology |
-|---|---|
-| Core Engine | Python 3.10+ (stdlib only: `math`, `datetime`, `csv`) |
-| Web API | FastAPI + Pydantic v2 + Uvicorn |
-| Database | SQLite + SQLAlchemy 2.0 |
-| Frontend | HTML5 / CSS3 / Vanilla JavaScript |
-| Charts | Chart.js 4.4 (CDN) |
+`python -m src.main` starts the separate interactive single-shipment temperature-check demonstration. Use `python run_project.py` for the complete CSV command-file pipeline.
