@@ -59,6 +59,7 @@ The current regression suite contains 41 tests.
 - Claim liability is grouped by responsible party (carrier ID or `3PL`), not duplicated by transport leg.
 - The configured shipment insurance value is applied as a cumulative cap per party across all rejected consignments in that shipment. The supplied sample data sets this to ₹10,00,000.
 - Excess is redistributed only to parties with positive attributed excursion minutes and remaining cap capacity.
+- ## project Contributors-Mohith
 - A party with zero attributed excursion minutes receives zero liability.
 - If all attributable parties reach their caps, the remainder is recorded as `UNALLOCATED`; it is not assigned to an unrelated party.
 
