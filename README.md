@@ -64,3 +64,15 @@ The current regression suite contains 41 tests.
 - If all attributable parties reach their caps, the remainder is recorded as `UNALLOCATED`; it is not assigned to an unrelated party.
 
 `python -m src.main` starts the separate interactive single-shipment temperature-check demonstration. Use `python run_project.py` for the complete CSV command-file pipeline.
+
+
+
+
+
+---
+
+## Project Demo Video
+
+Watch the complete project demonstration:
+
+[Click here to watch T077-PS-052 – Cold-Chain Shipment Temperature Compliance and Claims Engine](https://drive.google.com/file/d/11_O_AbQyluchF7Vbet2727Vb73U8fydH/view?usp=drive_web)
